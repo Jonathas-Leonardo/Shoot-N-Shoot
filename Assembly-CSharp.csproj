@@ -61,10 +61,12 @@
      <Compile Include="Assets\Script\Manager\GameManager.cs" />
      <Compile Include="Assets\Script\Manager\ScoreManager.cs" />
      <Compile Include="Assets\Script\Model\Asteroid.cs" />
+     <Compile Include="Assets\Script\Model\Explosion.cs" />
      <Compile Include="Assets\Script\Model\Shot.cs" />
      <Compile Include="Assets\Script\Model\Spaceship.cs" />
      <Compile Include="Assets\Script\Model\Wall.cs" />
      <Compile Include="Assets\Script\Tool\Movimentor.cs" />
+     <Compile Include="Assets\Script\Tool\Spawner.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/UnityProjects/Shoot n Shoot/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

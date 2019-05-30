@@ -26,7 +26,7 @@ public class ShotBehaviour : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other) {
 		if(other.gameObject.tag=="Asteroid"){
-
+			Destroy(gameObject);
 		}
 	}
 }
