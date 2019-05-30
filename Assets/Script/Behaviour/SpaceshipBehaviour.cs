@@ -8,6 +8,7 @@ public class SpaceshipBehaviour : MonoBehaviour {
 	public Spaceship spaceship;
 	public GameObject shoot_prefab;
 	public Transform spawnerShoot;
+	public GameObject explosion_prefab;
 	Rigidbody rb;
 
 	// Use this for initialization
@@ -52,5 +53,35 @@ public class SpaceshipBehaviour : MonoBehaviour {
 		GameObject obj = Instantiate(shoot_prefab,spawnerShoot.transform.position,transform.rotation);
 		obj.name = transform.name+" - tiro";
 		//obj.GetComponent<Shoot>().power = spaceship.power;
+	}
+
+	private void OnTriggerStay(Collider other) {
+		float leftLimit = -9f;
+		float rigthLimit = 9f;
+		float topLimit = 6;
+		float bottomLimit = -6;
+		if(other.gameObject.tag=="Wall"){
+			Vector3 pos = transform.position;
+			if(pos.x < leftLimit){
+				transform.position = new Vector3(8.5f,pos.y,pos.z);
+			}
+			else if(pos.x> rigthLimit){
+				transform.position = new Vector3(-8.5f,pos.y,pos.z);
+			}
+			else if(pos.y > topLimit){
+				transform.position = new Vector3(pos.x,-5.5f,pos.z);
+			}
+			else if (pos.y < bottomLimit){
+				transform.position = new Vector3(pos.x,5.5f,pos.z);
+			}
+		}
+	}
+
+	private void OnCollisionEnter(Collision other) {
+		//if(other.gameObject.tag == "Asteroid"){
+			gameObject.SetActive(false);
+			GameObject obj = Instantiate(explosion_prefab,transform.position,Quaternion.identity) as GameObject;
+			//Destroy(gameObject);
+		//}
 	}
 }
