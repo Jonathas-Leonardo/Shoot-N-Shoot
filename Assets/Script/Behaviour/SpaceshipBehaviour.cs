@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,15 +10,16 @@ public class SpaceshipBehaviour : MonoBehaviour {
 	public GameObject explosion_prefab;
 	Rigidbody rb;
 
+	public bool isDeath;
+
 	// Use this for initialization
 	void Start () {
-		//spaceship = new Spaceship();
 		rb = GetComponent<Rigidbody>();
+		GameManager.player_prefab = this;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		if(Input.GetKey(KeyCode.J)){
 			RotateLeft();
 		}
@@ -31,6 +31,9 @@ public class SpaceshipBehaviour : MonoBehaviour {
 		}
 		if(Input.GetKeyDown(KeyCode.K)){
 			SpawnShoot();
+		}
+		if(Input.GetKeyDown(KeyCode.Space)){
+			TeleportRandomMove();
 		}
 	}
 
@@ -49,10 +52,32 @@ public class SpaceshipBehaviour : MonoBehaviour {
         rb.AddForce(transform.up * spaceship.speed*.1f,ForceMode.Impulse);
     }
 
-    void SpawnShoot(){
-		GameObject obj = Instantiate(shoot_prefab,spawnerShoot.transform.position,transform.rotation);
+    private void SpawnShoot(){
+		GameObject obj = Instantiate(shoot_prefab,spawnerShoot.transform.position,spawnerShoot.transform.rotation);
 		obj.name = transform.name+" - tiro";
 		//obj.GetComponent<Shoot>().power = spaceship.power;
+	}
+
+	private void TeleportRandomMove(){
+		Vanish();
+		Invoke("ShowShip",1);
+	}
+
+	void ShowShip(){
+		rb.isKinematic = false;
+		transform.position = new Vector3(transform.position.x,transform.position.y,0);
+	}
+
+	void Vanish(){
+		rb.isKinematic = true;
+		transform.position = new Vector3(Random.Range(-8,8),Random.Range(-5,5),-10);
+	}
+
+	public void Revive(){
+		transform.position = Vector3.zero;
+		gameObject.SetActive(true);
+		isDeath = false;
+		rb.velocity = Vector3.zero;
 	}
 
 	private void OnTriggerStay(Collider other) {
@@ -78,10 +103,20 @@ public class SpaceshipBehaviour : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter(Collision other) {
-		if(other.gameObject.tag == "Asteroid"){
+		if(other.gameObject.tag == "Asteroid" || other.gameObject.tag == "Enemy"){
 			gameObject.SetActive(false);
-			GameObject obj = Instantiate(explosion_prefab,transform.position,Quaternion.identity) as GameObject;
+			Instantiate(explosion_prefab,transform.position,Quaternion.identity);
 			//Destroy(gameObject);
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.tag == "Enemy"){
+			gameObject.SetActive(false);
+			Instantiate(explosion_prefab,transform.position,Quaternion.identity);
+			//Destroy(gameObject);
+			isDeath = true;
 		}
 	}
 }

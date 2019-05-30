@@ -5,51 +5,46 @@ using UnityEngine;
 public class AsteroidBehaviour : MonoBehaviour {
 
 	public Asteroid asteroid;
-	public bool isSpawn;
-
 	Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
-		//AddMove();
-		//AddRotation();
-		//isSpawn = false;
-		gameObject.transform.localScale = Vector3.one * asteroid.size;
-		Physics.IgnoreLayerCollision(9,9,false);
+		SetScale(asteroid.size);
+		AddRotation(asteroid.angleSpeed);
+		AddMove(asteroid.speed);
+		Physics.IgnoreLayerCollision(9,9,true);
+		//Physics.IgnoreLayerCollision();
 	}
 
-	public void AddRotation(){
-		rb.AddTorque(Vector3.forward * asteroid.angleSpeed,ForceMode.Impulse);
+	public void SetScale(float size){
+		gameObject.transform.localScale = Vector3.one * size;
 	}
 
-	public void AddMove(){		
-		rb.AddForce(transform.right * asteroid.speed,ForceMode.Impulse);
+	public void AddRotation(float angleSpeed){
+		rb.AddTorque(Vector3.forward * angleSpeed,ForceMode.Impulse);
 	}
 
-	public void Spawn(Vector3 vel){
-		GameObject asteroid_obj = Instantiate(gameObject,transform.position,transform.rotation);
-		//asteroid_obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		asteroid_obj.name = "AsteroidChild";
-		AsteroidBehaviour ast = asteroid_obj.GetComponent<AsteroidBehaviour>();
-		//ast.isSpawn = false;
+	public void AddMove(Vector3 speed){		
+		rb.AddForce(speed,ForceMode.Impulse);
+	}
+
+	public void Slice(Vector3 vel){
+		AsteroidBehaviour ast = Instantiate(this,transform.position,transform.rotation);
 		ast.asteroid.size = (asteroid.size-1);
-		ast.asteroid.speed = asteroid.speed+1;
-		asteroid_obj.GetComponent<Rigidbody>().AddForce(vel, ForceMode.Impulse);
+		ast.asteroid.speed = vel;
+		ast.gameObject.name = "AsteroidChildren";
 	}
 
 	void OnCollisionEnter(Collision other)
 	{
-		if(other.gameObject.tag=="Shot" && rb !=null){
-			//Debug.Log("force "+ rb.velocity);
-			//gameObject.SetActive(false);
-			//Destroy(other.gameObject);
+		if(other.gameObject.tag=="Shot" || other.gameObject.tag=="Player" || other.gameObject.tag == "Enemy"){
 			if(asteroid.size>1){
-				Spawn(rb.velocity);
-				//Spawn();
+				Slice(rb.velocity);
+				Vector3 rand_velocity = new Vector3(rb.velocity.x+Random.Range(-1,1),rb.velocity.y+Random.Range(-1,1),0);
+				Slice(rand_velocity);
 			}
 			Destroy(gameObject);
-			
 		}
 	}
 

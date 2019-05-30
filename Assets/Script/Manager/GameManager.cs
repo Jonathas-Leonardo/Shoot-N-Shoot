@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	public AsteroidBehaviour ast_behaviour;
+	public GameObject canvas;
+	public AsteroidBehaviour ast_prefab;
 	public GameObject asteroid_grp;
+	//public Spawner player_spawner;
+	public static SpaceshipBehaviour player_prefab;
+	UIBehaviour ui_prefab;
 
 	[SerializeField]
 	public static int numberOfAsteroids;
 	//public int numberOfAsteroids;
 
 	//GameObject asteroid_prefab;
-
-	// Use this for initialization
-	void Start () {
-		
+	void Awake()
+	{
+		ui_prefab = canvas.GetComponent<UIBehaviour>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(KeyCode.P)){
-			//ast_behaviour.asteroid = asteroid;
-			//ast_behaviour.Spawn(Vector3.zero);
-			//getNumberOfAsteroids();
+		if(player_prefab.isDeath){
+
+			ui_prefab.ShowContinueText();
+			if(Input.GetKeyDown(KeyCode.Space)){
+				player_prefab.Revive();
+				ui_prefab.HideContinueText();
+			}
 		}
 	}
 

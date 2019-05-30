@@ -15,11 +15,19 @@ public class ShotBehaviour : MonoBehaviour {
 	}
 
 	public void MoveFordward(){
-		rb.AddForce(transform.up * shot.speed,ForceMode.Impulse);
+		rb.AddForce(transform.forward * shot.speed,ForceMode.Impulse);
 	}
 
 	void OnTriggerEnter(Collider other) {
 		if(other.gameObject.tag=="Wall"){
+			Destroy(gameObject);
+		}
+
+		if(other.gameObject.tag=="Enemy"){
+			Destroy(gameObject);
+		}
+
+		if(other.gameObject.tag=="Player"){
 			Destroy(gameObject);
 		}
 	}

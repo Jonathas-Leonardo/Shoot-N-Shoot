@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Shot
   - Asteroid
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - 
   - PostProcessing
   - Asteroid
-  - 
-  - 
+  - Shot
+  - Enemy
   - 
   - 
   - 

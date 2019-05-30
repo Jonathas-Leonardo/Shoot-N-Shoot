@@ -5,35 +5,24 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
 	public GameObject prefab_obj;
-	public GameObject parent_obj;
-	private  int NumberOfSpawn;
+	private int NumberOfSpawn;
 	private float currentTime;
-	public float stepTime;
-	public int spawnLimit;
-	public enum SPAWNER_TYPE{Single, Plus}
-	public SPAWNER_TYPE spawnerType;
-	
-	private void Start() {
-		//NumberOfSpawn=0;
-
-		if(spawnerType == SPAWNER_TYPE.Single){
-			Spawn(this.gameObject);
-		}
-	}
+	public int times = 1;
+	public float stepTime = 1;
+	public bool isStop;
 
 	private void FixedUpdate() {
 
-		if(NumberOfSpawn >= spawnLimit ){
-			spawnerType = SPAWNER_TYPE.Single;
+		if(NumberOfSpawn >= times ){
+			isStop=true;
 		}
 
-		if(spawnerType == SPAWNER_TYPE.Plus){
-			if(Time.time>=currentTime){
-				Spawn(this.gameObject);
+		if(!isStop){
+			if(Time.time >= currentTime){
+				Spawn();
 				AddCurrentTime();
 			}
 		}
-
 	}
 
 	public void AddNumberOfSpawn(){
@@ -47,19 +36,8 @@ public class Spawner : MonoBehaviour {
 
 	public void Spawn(){
 		GameObject obj = Instantiate(prefab_obj, transform.position,transform.rotation);
-		obj.name = obj.name+NumberOfSpawn;
+		obj.name = gameObject.name +"_"+ NumberOfSpawn;
+		obj.transform.parent = gameObject.transform;
 		AddNumberOfSpawn();
-	}
-
-	public void Spawn(GameObject parent){
-		GameObject obj = Instantiate(prefab_obj, transform.position,transform.rotation);
-		obj.name = "Note_"+NumberOfSpawn;
-		obj.transform.parent = parent.transform;
-		AddNumberOfSpawn();
-	}
-
-	public void DoSpawn(){
-		NumberOfSpawn=0;
-		spawnerType = Spawner.SPAWNER_TYPE.Plus;
 	}
 }
