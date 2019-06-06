@@ -72,6 +72,7 @@
      <Compile Include="Assets\Script\Tool\Movimentor.cs" />
      <Compile Include="Assets\Script\Tool\MyGizmos.cs" />
      <Compile Include="Assets\Script\Tool\Spawner.cs" />
+     <Compile Include="Assets\Script\Tool\Timer.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/UnityProjects/Shoot n Shoot/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

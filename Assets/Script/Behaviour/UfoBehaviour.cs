@@ -11,13 +11,21 @@ public class UfoBehaviour : MonoBehaviour {
 	public GameObject explosion_prefab;
 	public Transform spawnerShoot;
 	public Transform direction;
+
+	//Actions
 	public bool isShoot;
 	public bool isChange;
-	Rigidbody rb;
+	public bool isRest;
+	
+	//AI
+	float timeToShoot = 1;
+	float timeToWait = 2;
+	float timeToChange = 5;
 
+	Rigidbody rb;
+	
 	// Use this for initialization
 	void Start () {
-		//by force;
 		rb = GetComponent<Rigidbody>();
 		ChangeDirection();
 		addMove();
@@ -30,11 +38,11 @@ public class UfoBehaviour : MonoBehaviour {
 	void ChangeDirection(){
 		direction.rotation = Quaternion.AngleAxis(Random.Range(0,361),Vector3.forward);
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void Update () 
+	{
 		center.transform.rotation *= Quaternion.AngleAxis(ufo.angleSpeed,Vector3.up);
-		if(isShoot){
+		if(isShoot && isRest){
 			isShoot=false;
 			SpawnShoot();
 		}
@@ -47,24 +55,40 @@ public class UfoBehaviour : MonoBehaviour {
 		}
 	}
 
+	void FixedUpdate()
+	{
+		if(Time.timeSinceLevelLoad % timeToShoot == 0){
+			isShoot = true;
+		}
+
+		if(Time.timeSinceLevelLoad % timeToWait == 0){
+			isRest = !isRest;
+		}
+
+		if(Time.timeSinceLevelLoad % timeToChange ==0){
+			isChange = true;
+		}
+	}
+
 	void SpawnShoot(){
 		GameObject obj = Instantiate(shoot_prefab,spawnerShoot.transform.position,spawnerShoot.transform.rotation);
 		obj.name = transform.name+" - tiro";
 	}
 
+	void Death(){
+		gameObject.SetActive(false);
+		Instantiate(explosion_prefab,transform.position,Quaternion.identity);
+	}
+
 	private void OnCollisionEnter(Collision other) {
-		if(other.gameObject.tag == "Player"){
-			gameObject.SetActive(false);
-			Instantiate(explosion_prefab,transform.position,Quaternion.identity);
-			//Destroy(gameObject);
+		if(other.gameObject.tag == "Asteroid"){
+			//Death();
 		}
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if(other.gameObject.tag == "Player"){
-			gameObject.SetActive(false);
-			Instantiate(explosion_prefab,transform.position,Quaternion.identity);
-			//Destroy(gameObject);
+		if(other.gameObject.tag == "Player" || other.gameObject.tag == "Asteroid"){
+			Death();
 		}
 	}
 

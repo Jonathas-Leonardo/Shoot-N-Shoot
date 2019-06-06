@@ -110,9 +110,9 @@ public class SpaceshipBehaviour : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.tag == "Enemy"){
+		if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Shot"){
 			gameObject.SetActive(false);
 			Instantiate(explosion_prefab,transform.position,Quaternion.identity);
 			//Destroy(gameObject);

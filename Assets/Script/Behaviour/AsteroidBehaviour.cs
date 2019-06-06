@@ -7,6 +7,10 @@ public class AsteroidBehaviour : MonoBehaviour {
 	public Asteroid asteroid;
 	Rigidbody rb;
 
+void Awake() {
+	rb = GetComponent<Rigidbody>();
+}
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
@@ -14,7 +18,6 @@ public class AsteroidBehaviour : MonoBehaviour {
 		AddRotation(asteroid.angleSpeed);
 		AddMove(asteroid.speed);
 		Physics.IgnoreLayerCollision(9,9,true);
-		//Physics.IgnoreLayerCollision();
 	}
 
 	public void SetScale(float size){
@@ -36,9 +39,26 @@ public class AsteroidBehaviour : MonoBehaviour {
 		ast.gameObject.name = "AsteroidChildren";
 	}
 
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.tag=="Player" || other.gameObject.tag == "Enemy"){
+			if(asteroid.size>1){
+				Slice(rb.velocity);
+				Vector3 rand_velocity = new Vector3(rb.velocity.x+Random.Range(-1,1),rb.velocity.y+Random.Range(-1,1),0);
+				Slice(rand_velocity);
+			}
+			Destroy(gameObject);
+		}
+	}
+
+	/// <summary>
+	/// OnCollisionEnter is called when this collider/rigidbody has begun
+	/// touching another rigidbody/collider.
+	/// </summary>
+	/// <param name="other">The Collision data associated with this collision.</param>
 	void OnCollisionEnter(Collision other)
 	{
-		if(other.gameObject.tag=="Shot" || other.gameObject.tag=="Player" || other.gameObject.tag == "Enemy"){
+		if(other.gameObject.tag=="Shot"){
 			if(asteroid.size>1){
 				Slice(rb.velocity);
 				Vector3 rand_velocity = new Vector3(rb.velocity.x+Random.Range(-1,1),rb.velocity.y+Random.Range(-1,1),0);

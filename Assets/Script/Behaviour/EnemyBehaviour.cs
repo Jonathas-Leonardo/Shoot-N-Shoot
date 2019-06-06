@@ -22,4 +22,11 @@ public class EnemyBehaviour : MonoBehaviour {
 		obj.name = transform.name+" - tiro";
 		//obj.GetComponent<Shoot>().power = spaceship.power;
 	}
+
+	void OnCollisionEnter(Collision other)
+	{
+		if(other.gameObject.tag == "Enemy"){
+			
+		}
+	}
 }
