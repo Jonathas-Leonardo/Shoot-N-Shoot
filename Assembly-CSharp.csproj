@@ -64,6 +64,7 @@
      <Compile Include="Assets\Script\Manager\AudioManager.cs" />
      <Compile Include="Assets\Script\Manager\GameManager.cs" />
      <Compile Include="Assets\Script\Model\Asteroid.cs" />
+     <Compile Include="Assets\Script\Model\Boss.cs" />
      <Compile Include="Assets\Script\Model\Explosion.cs" />
      <Compile Include="Assets\Script\Model\Shot.cs" />
      <Compile Include="Assets\Script\Model\Spaceship.cs" />
