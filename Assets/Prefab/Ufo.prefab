@@ -316,6 +316,7 @@ MonoBehaviour:
   ufo:
     speed: 2
     angleSpeed: 2
+    scoreValue: 10
   center: {fileID: 1122232029849916}
   body: {fileID: 1990261197989642}
   shoot_prefab: {fileID: 1757210056960064, guid: 3c7d23141cabd3a47bf25646dcf17a8a,
@@ -326,3 +327,4 @@ MonoBehaviour:
   direction: {fileID: 4904881031694388}
   isShoot: 0
   isChange: 0
+  isRest: 0

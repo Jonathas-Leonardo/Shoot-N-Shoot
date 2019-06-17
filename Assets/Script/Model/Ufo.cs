@@ -7,4 +7,5 @@ public class Ufo {
 
 	public float speed;
 	public float angleSpeed;
+	public int scoreValue;
 }

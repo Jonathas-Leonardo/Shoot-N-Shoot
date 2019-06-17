@@ -28,10 +28,10 @@ public class UfoBehaviour : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody>();
 		ChangeDirection();
-		addMove();
+		AddMove();
 	}
 
-	void addMove(){		
+	void AddMove(){		
 		rb.AddForce(direction.right*ufo.speed,ForceMode.Impulse);
 	}
 
@@ -51,7 +51,7 @@ public class UfoBehaviour : MonoBehaviour {
 			isChange=false;
 			rb.velocity = Vector3.zero;
 			ChangeDirection();
-			addMove();
+			AddMove();
 		}
 	}
 
@@ -81,13 +81,30 @@ public class UfoBehaviour : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter(Collision other) {
+		//Debug.Log("Collision - "+other.gameObject.tag);
 		if(other.gameObject.tag == "Asteroid"){
 			//Death();
 		}
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if(other.gameObject.tag == "Player" || other.gameObject.tag == "Asteroid"){
+		//Debug.Log("Collider - "+other.gameObject.tag);
+		if(other.gameObject.tag == "Player"){		
+			SpaceshipBehaviour space_bhvr = other.gameObject.GetComponentInParent<SpaceshipBehaviour>();
+			if(space_bhvr != null){
+				Death();
+				space_bhvr.AddScore(ufo.scoreValue);
+			}
+		}
+		if(other.gameObject.tag == "Shot" ){
+			SpaceshipBehaviour space_bhvr = other.gameObject.GetComponent<ShotBehaviour>().spaceship_bhvr;
+			if(space_bhvr != null){
+				Death();
+				space_bhvr.AddScore(ufo.scoreValue);
+			}
+		}
+
+		if(other.gameObject.tag == "Asteroid"){
 			Death();
 		}
 	}

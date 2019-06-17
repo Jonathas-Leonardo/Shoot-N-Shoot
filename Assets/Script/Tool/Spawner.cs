@@ -27,7 +27,6 @@ public class Spawner : MonoBehaviour {
 
 	public void AddNumberOfSpawn(){
 		NumberOfSpawn++;
-		GameManager.numberOfAsteroids++;
 	}
 
 	public void AddCurrentTime(){

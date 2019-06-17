@@ -8,76 +8,60 @@ public class SpaceshipBehaviour : MonoBehaviour {
 	public GameObject shoot_prefab;
 	public Transform spawnerShoot;
 	public GameObject explosion_prefab;
-	Rigidbody rb;
+	public GameObject renders;
 
+	//actions
+	public bool isRotateLeft;
+	public bool isRotateRight;
+	public bool isMoveFordward;
+	public bool isShot;
+	public bool isTeleport;
+
+	public bool isOver;
 	public bool isDeath;
+	public bool isRebirth;
+
+	public int score;
+
+	Rigidbody rb;
+	SpaceshipUI ui;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
-		GameManager.player_prefab = this;
+		ui = GetComponent<SpaceshipUI>();
+		ui.UpdateLifeValueText(spaceship.live);
+		ui.UpdateScoreValueText(score);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKey(KeyCode.J)){
-			RotateLeft();
+		if(!isDeath){
+			if(isRotateLeft){
+				RotateLeft();
+			}
+			if(isRotateRight){
+				RotateRight();
+			}
+			if(isMoveFordward){
+				MoveFordward();
+			}
+			if(isShot){
+				isShot = false;
+				SpawnShoot();
+			}
+			if(isTeleport){
+				isTeleport = false;
+				TeleportRandomMove();
+			}
 		}
-		if(Input.GetKey(KeyCode.L)){
-			RotateRight();
+		if(isRebirth){
+			isRebirth = false;
+			if(isDeath){
+				Revive();
+				isDeath = false;
+			}
 		}
-		if(Input.GetKey(KeyCode.I)){
-			MoveFordward();
-		}
-		if(Input.GetKeyDown(KeyCode.K)){
-			SpawnShoot();
-		}
-		if(Input.GetKeyDown(KeyCode.Space)){
-			TeleportRandomMove();
-		}
-	}
-
-    private void RotateLeft()
-    {
-        transform.rotation *= Quaternion.AngleAxis(spaceship.handling,Vector3.forward);
-    }
-
-    private void RotateRight()
-    {
-        transform.rotation *= Quaternion.AngleAxis(spaceship.handling,-Vector3.forward);
-    }
-
-    private void MoveFordward()
-    {
-        rb.AddForce(transform.up * spaceship.speed*.1f,ForceMode.Impulse);
-    }
-
-    private void SpawnShoot(){
-		GameObject obj = Instantiate(shoot_prefab,spawnerShoot.transform.position,spawnerShoot.transform.rotation);
-		obj.name = transform.name+" - tiro";
-		//obj.GetComponent<Shoot>().power = spaceship.power;
-	}
-
-	private void TeleportRandomMove(){
-		Vanish();
-		Invoke("ShowShip",1);
-	}
-
-	void ShowShip(){
-		rb.isKinematic = false;
-		transform.position = new Vector3(transform.position.x,transform.position.y,0);
-	}
-
-	void Vanish(){
-		rb.isKinematic = true;
-		transform.position = new Vector3(Random.Range(-8,8),Random.Range(-5,5),-10);
-	}
-
-	public void Revive(){
-		transform.position = Vector3.zero;
-		gameObject.SetActive(true);
-		isDeath = false;
-		rb.velocity = Vector3.zero;
 	}
 
 	private void OnTriggerStay(Collider other) {
@@ -104,19 +88,91 @@ public class SpaceshipBehaviour : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision other) {
 		if(other.gameObject.tag == "Asteroid" || other.gameObject.tag == "Enemy"){
-			gameObject.SetActive(false);
-			Instantiate(explosion_prefab,transform.position,Quaternion.identity);
+			//DestroyShip();
 			//Destroy(gameObject);
 		}
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
+		// Debug.Log(other.gameObject.name);
 		if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Shot"){
-			gameObject.SetActive(false);
-			Instantiate(explosion_prefab,transform.position,Quaternion.identity);
-			//Destroy(gameObject);
-			isDeath = true;
+			DestroyShip();
 		}
+	}
+
+	//Todo
+
+    private void RotateLeft()
+    {
+        transform.rotation *= Quaternion.AngleAxis(spaceship.handling,Vector3.forward);
+    }
+
+    private void RotateRight()
+    {
+        transform.rotation *= Quaternion.AngleAxis(spaceship.handling,-Vector3.forward);
+    }
+
+    private void MoveFordward()
+    {
+        rb.AddForce(transform.up * spaceship.speed*.1f,ForceMode.Impulse);
+    }
+
+    private void SpawnShoot(){
+		GameObject obj = Instantiate(shoot_prefab,spawnerShoot.transform.position,spawnerShoot.transform.rotation);
+		obj.GetComponent<ShotBehaviour>().master_obj = gameObject;
+		obj.GetComponent<ShotBehaviour>().spaceship_bhvr = this;
+		obj.name = transform.name+" - tiro";
+	}
+
+	private void TeleportRandomMove(){
+		Vanish();
+		Invoke("ShowShip",1);
+	}
+
+	private void ShowShip(){
+		rb.isKinematic = false;
+		renders.SetActive(true);
+		transform.position = new Vector3(transform.position.x,transform.position.y,0);
+	}
+
+	private void Vanish(){
+		rb.isKinematic = true;
+		renders.SetActive(false);
+		transform.position = new Vector3(Random.Range(-8,8),Random.Range(-5,5),-10);
+	}
+
+	private void Revive(){
+		transform.position = Vector3.zero;
+		rb.velocity = Vector3.zero;
+		rb.detectCollisions = true;
+		rb.isKinematic = false;
+		renders.SetActive(true);
+	}
+
+	public void AddScore(int value){
+		score += value;	
+		ui.UpdateScoreValueText(score);
+	}
+
+	private void AddLive(int value){
+		spaceship.live += value;
+	}
+
+	private void LiveCheck(){	
+		if(spaceship.live==0){
+			isOver =true;
+		}
+	}
+
+	private void DestroyShip(){
+		Instantiate(explosion_prefab,transform.position,Quaternion.identity);
+		AddLive(-1);
+		LiveCheck();
+		ui.UpdateLifeValueText(spaceship.live);
+		isDeath = true;
+		rb.isKinematic = true;
+		rb.detectCollisions = false;
+		renders.SetActive(false);
 	}
 }

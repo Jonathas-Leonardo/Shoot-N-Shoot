@@ -5,8 +5,9 @@ using UnityEngine;
 public class ShotBehaviour : MonoBehaviour {
 
 	public Shot shot;
-
+	public GameObject master_obj;
 	Rigidbody rb;
+	public SpaceshipBehaviour spaceship_bhvr;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,9 @@ public class ShotBehaviour : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other) {
 		if(other.gameObject.tag=="Asteroid"){
+			Destroy(gameObject);
+		}
+		if(other.gameObject.tag=="Shot"){
 			Destroy(gameObject);
 		}
 	}

@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114493469367765866}
   m_Layer: 0
   m_Name: ShotPlayer
-  m_TagString: Player
+  m_TagString: Shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757210056960064}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.924, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.21377, y: 0.21377042, z: 0.21377042}
   m_Children:
   - {fileID: 4473504576549808}
@@ -153,6 +153,8 @@ MonoBehaviour:
     speed: 6
     power: 1
     live: 1
+  master_obj: {fileID: 0}
+  sp: {fileID: 0}
 --- !u!136 &136563714170390890
 CapsuleCollider:
   m_ObjectHideFlags: 1
