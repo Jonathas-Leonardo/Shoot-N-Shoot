@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Script\Behaviour\AsteroidBehaviour.cs" />
      <Compile Include="Assets\Script\Behaviour\EnemyBehaviour.cs" />
+     <Compile Include="Assets\Script\Behaviour\ExplosionBehaviour.cs" />
      <Compile Include="Assets\Script\Behaviour\ShotBehaviour.cs" />
      <Compile Include="Assets\Script\Behaviour\SpaceshipBehaviour.cs" />
      <Compile Include="Assets\Script\Behaviour\UfoBehaviour.cs" />

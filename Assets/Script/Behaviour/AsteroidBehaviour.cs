@@ -7,9 +7,9 @@ public class AsteroidBehaviour : MonoBehaviour {
 	public Asteroid asteroid;
 	Rigidbody rb;
 
-void Awake() {
-	rb = GetComponent<Rigidbody>();
-}
+	void Awake() {
+		rb = GetComponent<Rigidbody>();
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -36,12 +36,23 @@ void Awake() {
 		AsteroidBehaviour ast = Instantiate(this,transform.position,transform.rotation);
 		ast.asteroid.size = (asteroid.size-1);
 		ast.asteroid.speed = vel;
+		ast.asteroid.scoreValue = (int)(asteroid.scoreValue/2);
 		ast.gameObject.name = "AsteroidChildren";
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.tag=="Player" || other.gameObject.tag == "Enemy"){
+		if(other.gameObject.tag == "Enemy"){
+			if(asteroid.size>1){
+				Slice(rb.velocity);
+				Vector3 rand_velocity = new Vector3(rb.velocity.x+Random.Range(-1,1),rb.velocity.y+Random.Range(-1,1),0);
+				Slice(rand_velocity);
+			}
+			Destroy(gameObject);
+		}
+
+		if(other.gameObject.tag=="Player"){
+			other.gameObject.GetComponentInParent<SpaceshipBehaviour>().AddScore(asteroid.scoreValue);
 			if(asteroid.size>1){
 				Slice(rb.velocity);
 				Vector3 rand_velocity = new Vector3(rb.velocity.x+Random.Range(-1,1),rb.velocity.y+Random.Range(-1,1),0);
@@ -51,11 +62,6 @@ void Awake() {
 		}
 	}
 
-	/// <summary>
-	/// OnCollisionEnter is called when this collider/rigidbody has begun
-	/// touching another rigidbody/collider.
-	/// </summary>
-	/// <param name="other">The Collision data associated with this collision.</param>
 	void OnCollisionEnter(Collision other)
 	{
 		if(other.gameObject.tag=="Shot"){
@@ -64,7 +70,13 @@ void Awake() {
 				Vector3 rand_velocity = new Vector3(rb.velocity.x+Random.Range(-1,1),rb.velocity.y+Random.Range(-1,1),0);
 				Slice(rand_velocity);
 			}
+			Debug.Log("asteroid - tiro ");
 			Destroy(gameObject);
+			SpaceshipBehaviour spaceship_bhvr = other.gameObject.GetComponent<ShotBehaviour>().spaceship_bhvr;
+			if(spaceship_bhvr !=null){
+				
+				spaceship_bhvr.AddScore(asteroid.scoreValue);
+			}
 		}
 	}
 

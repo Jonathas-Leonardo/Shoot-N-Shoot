@@ -57,7 +57,7 @@ public class SpaceshipBehaviour : MonoBehaviour {
 		}
 		if(isRebirth){
 			isRebirth = false;
-			if(isDeath){
+			if(isDeath && !isOver){
 				Revive();
 				isDeath = false;
 			}
@@ -86,17 +86,14 @@ public class SpaceshipBehaviour : MonoBehaviour {
 		}
 	}
 
-	private void OnCollisionEnter(Collision other) {
-		if(other.gameObject.tag == "Asteroid" || other.gameObject.tag == "Enemy"){
-			//DestroyShip();
-			//Destroy(gameObject);
-		}
-	}
-
 	private void OnTriggerEnter(Collider other)
 	{
 		// Debug.Log(other.gameObject.name);
 		if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Shot"){
+			DestroyShip();
+		}
+
+		if(other.gameObject.tag == "Asteroid"){
 			DestroyShip();
 		}
 	}
@@ -157,20 +154,22 @@ public class SpaceshipBehaviour : MonoBehaviour {
 
 	private void AddLive(int value){
 		spaceship.live += value;
+		ui.UpdateLifeValueText(spaceship.live);
 	}
 
-	private void LiveCheck(){	
+	private void LiveCheck(){
 		if(spaceship.live==0){
-			isOver =true;
+			isOver = true;
+			isDeath = false;
+		}else{
+			isDeath = true;
 		}
 	}
 
 	private void DestroyShip(){
 		Instantiate(explosion_prefab,transform.position,Quaternion.identity);
 		AddLive(-1);
-		LiveCheck();
-		ui.UpdateLifeValueText(spaceship.live);
-		isDeath = true;
+		LiveCheck();	
 		rb.isKinematic = true;
 		rb.detectCollisions = false;
 		renders.SetActive(false);
