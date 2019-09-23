@@ -3,24 +3,35 @@ guid: 72495fab015ebae4b81114063f7f786a
 TextureImporter:
   fileIDToRecycleName:
     21300000: HealthBar
-    21300002: Spaceship03_1
-    21300004: Spaceship03_2
-    21300006: Spaceship03_3
-    21300008: Spaceship03_4
-    21300010: Spaceship03_5
-    21300012: Spaceship03_6
-    21300014: Spaceship03_7
+    21300002: star_0
+    21300004: star_02
+    21300006: star_03
+    21300008: star_4
+    21300010: star_04
+    21300012: shot0
+    21300014: shot01
     21300016: shoot
-    21300018: Spaceship03_9
-    21300020: Spaceship03_10
-    21300022: Spaceship03_11
+    21300018: shot4
+    21300020: hit_00
+    21300022: hit_01
     21300024: smallAsteroid_01
     21300026: smallAsteroid_02
     21300028: smallAsteroid_03
     21300030: MediumAsteroid_01
     21300032: MediumAsteroid_02
     21300034: BigAsteroid
-    21300036: Spaceship03_18
+    21300036: Warp
+    21300038: barfill
+    21300040: star_1
+    21300042: star_3
+    21300044: Spaceship03_5
+    21300046: shot3
+    21300048: smallAsteroid00
+    21300050: smallAsteroid01
+    21300052: smallAsteroid02
+    21300054: MidAseroid_01
+    21300056: MidAseroid_02
+    21300058: bigAsteroid
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -114,7 +125,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthBar
+      name: barfill
       rect:
         serializedVersion: 2
         x: 62
@@ -122,19 +133,19 @@ TextureImporter:
         width: 338
         height: 20
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b6c9e279ce975543adf09b79fa222ad
+      spriteID: c8b690eb1e4b0084081f94e95b869dd2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_1
+      name: star_0
       rect:
         serializedVersion: 2
         x: 80
@@ -142,19 +153,19 @@ TextureImporter:
         width: 69
         height: 69
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e72937812f078574eae88835d3ee0ab0
+      spriteID: 7f14c662051d1b14180aea9dba843a59
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_2
+      name: star_1
       rect:
         serializedVersion: 2
         x: 159
@@ -162,19 +173,19 @@ TextureImporter:
         width: 62
         height: 62
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23120d8bd4abeda47ba418e92d4db02e
+      spriteID: 64ca7ff0e429f3d48ac217f500f13cf0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_3
+      name: star_3
       rect:
         serializedVersion: 2
         x: 230
@@ -182,19 +193,19 @@ TextureImporter:
         width: 54
         height: 54
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2737b10382b97b4a87b30070f211730
+      spriteID: 29cf828aa02f5214b80e13189210bf17
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_4
+      name: star_4
       rect:
         serializedVersion: 2
         x: 297
@@ -202,13 +213,13 @@ TextureImporter:
         width: 47
         height: 47
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 656e7555a8ad140408e450d3f5500ecd
+      spriteID: 851e30cfca861b4499c99779b501ee4f
       vertices: []
       indices: 
       edges: []
@@ -222,19 +233,19 @@ TextureImporter:
         width: 39
         height: 39
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 859cf42e4544bd345a43e15b2c984f16
+      spriteID: 6c4c8b2e96c6a6640b47c52141e49f11
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_6
+      name: shot0
       rect:
         serializedVersion: 2
         x: 95
@@ -242,19 +253,19 @@ TextureImporter:
         width: 41
         height: 42
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 260fe1cb6486622438584d24f5d44016
+      spriteID: 8f5d4bdd56733624d8cc6f0a34e9e3bc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_7
+      name: shot01
       rect:
         serializedVersion: 2
         x: 147
@@ -262,19 +273,19 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 848673ec4e8f5cc489202bbd5083ebb4
+      spriteID: 5a8fc0943e65a91418e45f43afce3e79
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shoot
+      name: shot3
       rect:
         serializedVersion: 2
         x: 207
@@ -282,19 +293,19 @@ TextureImporter:
         width: 25
         height: 87
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe31b38af214987448e9d6149cd033be
+      spriteID: 01b9bc0e25be95f42815e157e52bbcf2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_9
+      name: shot4
       rect:
         serializedVersion: 2
         x: 254
@@ -302,19 +313,19 @@ TextureImporter:
         width: 25
         height: 87
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ffe8bdc8549e1142b4b48ea53b5f4b1
+      spriteID: 586e775a1a0601449bdada12f9e63aa5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_10
+      name: hit_00
       rect:
         serializedVersion: 2
         x: 293
@@ -322,19 +333,19 @@ TextureImporter:
         width: 61
         height: 61
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9969530cadb09fb4ea30fc854e3ef7fa
+      spriteID: 8b5c420e13ad8f2438bf2c13c258e1fd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_11
+      name: hit_01
       rect:
         serializedVersion: 2
         x: 358
@@ -342,39 +353,39 @@ TextureImporter:
         width: 61
         height: 61
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 264f9036d2293374b8582fd1f5f34e74
+      spriteID: b9bb0e01d6ef51242a7e45ec98dda0ed
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallAsteroid_01
+      name: smallAsteroid00
       rect:
         serializedVersion: 2
-        x: 86
+        x: 88
         y: 701
         width: 52
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ace64ae58b6e954b8dd6bc3da6dcac7
+      spriteID: 8af2e10a24a6d364daa755639c512755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallAsteroid_02
+      name: smallAsteroid01
       rect:
         serializedVersion: 2
         x: 157
@@ -382,19 +393,19 @@ TextureImporter:
         width: 52
         height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1eb93a201a59ae646995d241a0712268
+      spriteID: de59c7fa4ebc67947b00c354d177bb29
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: smallAsteroid_03
+      name: smallAsteroid02
       rect:
         serializedVersion: 2
         x: 224
@@ -402,19 +413,19 @@ TextureImporter:
         width: 50
         height: 47
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b057f4e9f483bf748bcd0895fb44a094
+      spriteID: 1e69e33a89fdfda479bf56dab6bedb93
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MediumAsteroid_01
+      name: MidAseroid_01
       rect:
         serializedVersion: 2
         x: 57
@@ -422,19 +433,19 @@ TextureImporter:
         width: 113
         height: 113
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9863c43c7964f10469f856875ab24016
+      spriteID: d4710e6a6f58df144bdd67dc503d624b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MediumAsteroid_02
+      name: MidAseroid_02
       rect:
         serializedVersion: 2
         x: 191
@@ -442,19 +453,19 @@ TextureImporter:
         width: 117
         height: 114
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deb0e4eba44842e43a620ea4e9c82ea7
+      spriteID: f485891b7926e1f4fbd14e1d3f7fd2fa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BigAsteroid
+      name: bigAsteroid
       rect:
         serializedVersion: 2
         x: 47
@@ -462,19 +473,19 @@ TextureImporter:
         width: 184
         height: 182
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78c944dc86e2cbf4a94ec948d3068acc
+      spriteID: b16c7be0f14b6624d96101d1e838fa85
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spaceship03_18
+      name: Warp
       rect:
         serializedVersion: 2
         x: 263
@@ -482,13 +493,13 @@ TextureImporter:
         width: 234
         height: 214
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3833811af94f9824687ac7570e1e65b3
+      spriteID: 0098d27085dae634aac8a707c5eed94b
       vertices: []
       indices: 
       edges: []

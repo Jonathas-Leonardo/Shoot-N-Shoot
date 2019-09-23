@@ -118,7 +118,7 @@ public class SpaceshipBehaviour : MonoBehaviour {
     private void SpawnShoot(){
 		GameObject obj = Instantiate(shoot_prefab,spawnerShoot.transform.position,spawnerShoot.transform.rotation);
 		obj.GetComponent<ShotBehaviour>().master_obj = gameObject;
-		obj.GetComponent<ShotBehaviour>().spaceship_bhvr = this;
+		//obj.GetComponent<ShotBehaviour>().spaceship_bhvr = this;
 		obj.name = transform.name+" - tiro";
 	}
 

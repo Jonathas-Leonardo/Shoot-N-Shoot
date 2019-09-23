@@ -129,3 +129,4 @@ MonoBehaviour:
     angleSpeed: 0.1
     size: 3
     scoreValue: 100
+  isRespawn: 0

@@ -7,6 +7,8 @@ public class AsteroidBehaviour : MonoBehaviour {
 	public Asteroid asteroid;
 	Rigidbody rb;
 
+	public bool isRespawn;
+
 	void Awake() {
 		rb = GetComponent<Rigidbody>();
 	}
@@ -20,16 +22,40 @@ public class AsteroidBehaviour : MonoBehaviour {
 		Physics.IgnoreLayerCollision(9,9,true);
 	}
 
-	public void SetScale(float size){
+	void Update()
+	{
+		if(isRespawn){
+			isRespawn=false;
+			Respawn();
+		}
+	}
+
+	void SetScale(float size){
 		gameObject.transform.localScale = Vector3.one * size;
 	}
 
-	public void AddRotation(float angleSpeed){
+	void AddRotation(float angleSpeed){
 		rb.AddTorque(Vector3.forward * angleSpeed,ForceMode.Impulse);
 	}
 
-	public void AddMove(Vector3 speed){		
+	void AddMove(Vector3 speed){		
 		rb.AddForce(speed,ForceMode.Impulse);
+	}
+
+	void Die(){
+		rb.Sleep();
+		rb.detectCollisions = false;
+		gameObject.GetComponent<SpriteRenderer>().enabled = false;
+	}
+
+	void Respawn(){
+		rb.WakeUp();
+		AddRotation(asteroid.angleSpeed);
+		AddMove(asteroid.speed);
+		rb.detectCollisions = true;
+		gameObject.GetComponent<SpriteRenderer>().enabled = true;
+		transform.position = transform.parent.position;
+		transform.rotation = Quaternion.identity;
 	}
 
 	public void Slice(Vector3 vel){
@@ -48,7 +74,8 @@ public class AsteroidBehaviour : MonoBehaviour {
 				Vector3 rand_velocity = new Vector3(rb.velocity.x+Random.Range(-1,1),rb.velocity.y+Random.Range(-1,1),0);
 				Slice(rand_velocity);
 			}
-			Destroy(gameObject);
+			Die();
+			//Destroy(gameObject);
 		}
 
 		if(other.gameObject.tag=="Player"){
@@ -58,7 +85,8 @@ public class AsteroidBehaviour : MonoBehaviour {
 				Vector3 rand_velocity = new Vector3(rb.velocity.x+Random.Range(-1,1),rb.velocity.y+Random.Range(-1,1),0);
 				Slice(rand_velocity);
 			}
-			Destroy(gameObject);
+			Die();
+			//Destroy(gameObject);
 		}
 	}
 
@@ -71,12 +99,13 @@ public class AsteroidBehaviour : MonoBehaviour {
 				Slice(rand_velocity);
 			}
 			Debug.Log("asteroid - tiro ");
-			Destroy(gameObject);
-			SpaceshipBehaviour spaceship_bhvr = other.gameObject.GetComponent<ShotBehaviour>().spaceship_bhvr;
-			if(spaceship_bhvr !=null){
+			//Destroy(gameObject);
+			Die();
+			//SpaceshipBehaviour spaceship_bhvr = other.gameObject.GetComponent<ShotBehaviour>().spaceship_bhvr;
+			// if(spaceship_bhvr !=null){
 				
-				spaceship_bhvr.AddScore(asteroid.scoreValue);
-			}
+			// 	spaceship_bhvr.AddScore(asteroid.scoreValue);
+			// }
 		}
 	}
 

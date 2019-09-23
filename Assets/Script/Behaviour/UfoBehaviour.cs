@@ -97,11 +97,11 @@ public class UfoBehaviour : MonoBehaviour {
 			}
 		}
 		if(other.gameObject.tag == "Shot" ){
-			SpaceshipBehaviour space_bhvr = other.gameObject.GetComponent<ShotBehaviour>().spaceship_bhvr;
-			if(space_bhvr != null){
-				Death();
-				space_bhvr.AddScore(ufo.scoreValue);
-			}
+			//SpaceshipBehaviour space_bhvr = other.gameObject.GetComponent<ShotBehaviour>().spaceship_bhvr;
+			// if(space_bhvr != null){
+			// 	Death();
+			// 	space_bhvr.AddScore(ufo.scoreValue);
+			// }
 		}
 
 		if(other.gameObject.tag == "Asteroid"){

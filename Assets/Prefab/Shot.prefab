@@ -154,7 +154,6 @@ MonoBehaviour:
     power: 1
     live: 1
   master_obj: {fileID: 0}
-  sp: {fileID: 0}
 --- !u!136 &136563714170390890
 CapsuleCollider:
   m_ObjectHideFlags: 1
