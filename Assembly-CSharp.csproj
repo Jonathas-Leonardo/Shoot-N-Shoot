@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\Behaviour\AsteroidBehaviour.cs" />
+     <Compile Include="Assets\Script\Behaviour\DarkHoleBehaviour.cs" />
      <Compile Include="Assets\Script\Behaviour\EnemyBehaviour01.cs" />
      <Compile Include="Assets\Script\Behaviour\EnemyBehaviour02.cs" />
      <Compile Include="Assets\Script\Behaviour\ExplosionBehaviour.cs" />
@@ -61,23 +62,23 @@
      <Compile Include="Assets\Script\Behaviour\ShotBehaviour.cs" />
      <Compile Include="Assets\Script\Behaviour\SpaceshipBehaviour.cs" />
      <Compile Include="Assets\Script\Behaviour\UfoBehaviour.cs" />
-     <Compile Include="Assets\Script\Behaviour\WallBehaviour.cs" />
+     <Compile Include="Assets\Script\Behaviour\WatcherBehaviour.cs" />
      <Compile Include="Assets\Script\Controller\InputController.cs" />
      <Compile Include="Assets\Script\Interface\IController.cs" />
      <Compile Include="Assets\Script\Manager\AudioManager.cs" />
      <Compile Include="Assets\Script\Manager\GameManager.cs" />
      <Compile Include="Assets\Script\Model\Asteroid.cs" />
-     <Compile Include="Assets\Script\Model\Boss.cs" />
-     <Compile Include="Assets\Script\Model\EnemyBase.cs" />
+     <Compile Include="Assets\Script\Model\DarkHole.cs" />
      <Compile Include="Assets\Script\Model\Explosion.cs" />
+     <Compile Include="Assets\Script\Model\Player.cs" />
      <Compile Include="Assets\Script\Model\Shot.cs" />
      <Compile Include="Assets\Script\Model\Spaceship.cs" />
-     <Compile Include="Assets\Script\Model\Ufo.cs" />
      <Compile Include="Assets\Script\Model\Wall.cs" />
      <Compile Include="Assets\Script\Tool\Movimentor.cs" />
      <Compile Include="Assets\Script\Tool\MyGizmos.cs" />
      <Compile Include="Assets\Script\Tool\Spawner.cs" />
      <Compile Include="Assets\Script\Tool\Timer.cs" />
+     <Compile Include="Assets\Script\Tool\Warper.cs" />
      <Compile Include="Assets\Script\UI\GameUI.cs" />
      <Compile Include="Assets\Script\UI\SpaceshipUI.cs" />
  <Reference Include="Unity.VectorGraphics">

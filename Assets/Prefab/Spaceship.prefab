@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4215313398192446}
   - component: {fileID: 212293333919100986}
   - component: {fileID: 65867884760409076}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spaceship (1)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,9 +88,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4370322535647378}
+  - component: {fileID: 114163432538893806}
   - component: {fileID: 114258979609008678}
   - component: {fileID: 54812053931473238}
-  - component: {fileID: 114533588405397272}
+  - component: {fileID: 114689130322452320}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Player
@@ -108,7 +109,7 @@ GameObject:
   - component: {fileID: 4675503713249824}
   - component: {fileID: 114797201188921262}
   m_Layer: 0
-  m_Name: shotOrigin
+  m_Name: spawnerShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,13 +201,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1173536488738204}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4642869247756438}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4287361344638588
 Transform:
   m_ObjectHideFlags: 1
@@ -228,7 +229,7 @@ Transform:
   m_GameObject: {fileID: 1546282500628024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4642869247756438}
   m_Father: {fileID: 0}
@@ -287,13 +288,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1694997874747634}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4642869247756438}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4778498107652746
 Transform:
   m_ObjectHideFlags: 1
@@ -313,13 +314,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985620100010472}
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
-  m_LocalScale: {x: 1, y: 5, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalScale: {x: 1, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 4642869247756438}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23071006921691066
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -543,7 +544,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &65269215826953662
 BoxCollider:
@@ -581,6 +582,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114163432538893806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546282500628024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3bc9670928fc544af6b146c25c9740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  live: 1
+  heart: 1
+  obj_name: player
+  speed: 1
+  defense: 1
+  power: 1
+  handling: 1
+  score: 0
+  obj_type: 1
 --- !u!114 &114258979609008678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -592,15 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d3f1001b658c945bcdbe13be1ef24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship:
-    live: 8
-    heart: 1
-    spaceship_name: pilot
-    speed: 3
-    defense: 1
-    power: 1
-    handling: 2
-  shoot_prefab: {fileID: 1757210056960064, guid: 43c90b9ca0822714b926245a63e08dcd,
+  shoot_prefab: {fileID: 114001994704710344, guid: 3c7d23141cabd3a47bf25646dcf17a8a,
     type: 2}
   spawnerShoot: {fileID: 4675503713249824}
   explosion_prefab: {fileID: 1326682106585978, guid: 315eaf2dc79e89e4681ea3f712ed2c35,
@@ -614,8 +627,7 @@ MonoBehaviour:
   isOver: 0
   isDeath: 0
   isRebirth: 0
-  score: 0
---- !u!114 &114533588405397272
+--- !u!114 &114689130322452320
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -623,11 +635,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1546282500628024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6862b4efaf0e854cb2f488cb06234f6, type: 3}
+  m_Script: {fileID: 11500000, guid: b8178c5f0fa186345be6f5f45bc18f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreValueText: {fileID: 0}
-  lifeValueText: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &114797201188921262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -642,7 +653,7 @@ MonoBehaviour:
   radius: 0.1
   color:
     serializedVersion: 2
-    rgba: 4294639360
+    rgba: 4278255436
 --- !u!198 &198434221156014816
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1273,7 +1284,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: -90, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0

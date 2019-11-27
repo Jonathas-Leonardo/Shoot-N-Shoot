@@ -101,13 +101,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120113286692342}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4835868197383866}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4459298488846182
 Transform:
   m_ObjectHideFlags: 1
@@ -127,8 +127,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1566376539994016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.6, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 1.9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4459298488846182}
@@ -137,20 +137,20 @@ Transform:
   - {fileID: 4904881031694388}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4904881031694388
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513294691156234}
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4835868197383866}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4940785576968440
 Transform:
   m_ObjectHideFlags: 1
@@ -261,7 +261,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &65604066580149352
 BoxCollider:
@@ -313,13 +313,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4598d65e0bb76504ba2add50ba6b9384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ufo:
-    speed: 2
-    angleSpeed: 2
-    scoreValue: 200
+  live: 1
+  heart: 2
+  player_name: ufo
+  speed: 1
+  defense: 1
+  power: 1
+  handling: 1
+  score: 50
+  obj_type: 0
   center: {fileID: 1122232029849916}
   body: {fileID: 1990261197989642}
-  shoot_prefab: {fileID: 1757210056960064, guid: 3c7d23141cabd3a47bf25646dcf17a8a,
+  shoot_prefab: {fileID: 1957282789036614, guid: 6533acb0cda98e04fb9e9a8467c17c20,
     type: 2}
   explosion_prefab: {fileID: 1326682106585978, guid: 315eaf2dc79e89e4681ea3f712ed2c35,
     type: 2}

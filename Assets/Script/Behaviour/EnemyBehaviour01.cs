@@ -2,61 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour01 : MonoBehaviour {
+public class EnemyBehaviour01 : Player {
 
-	public EnemyBase enemy;
 	public ShotBehaviour shoot_prefab;
 	public Transform[] shotSpawner;
-
 	float currentTime = 0;
 	public float timeToShoot = 1;
-
 	Rigidbody rgBody;
+	public bool isShot;
 
 	// Use this for initialization
 	void Start () {
-		enemy = new EnemyBase();
-		enemy.enemy_name = "godofredo";
-		//spaceship = new Spaceship();
+		player_name = "godofredo";
 		currentTime = Time.time;
-		rgBody = GetComponent<Rigidbody>();
-		//MoveFordward();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(enemy.isShot){
-			for (int i = 0; i < shotSpawner.Length; i++)
-			{
-				SpawnShoot(shotSpawner[i]);
-			}
-			enemy.isShot = false;
-		}
-		enemy.isShot = VerifyTimeToToShot();
+		rgBody = GetComponent<Rigidbody> ();
 	}
 
-	bool VerifyTimeToToShot(){
-		if(currentTime + timeToShoot < Time.time){
+	// Update is called once per frame
+	void Update () {
+		if (isShot) {
+			for (int i = 0; i < shotSpawner.Length; i++) {
+				SpawnShoot (shotSpawner[i]);
+			}
+			isShot = false;
+		}
+		isShot = VerifyTimeToToShot ();
+	}
+
+	bool VerifyTimeToToShot () {
+		if (currentTime + timeToShoot < Time.time) {
 			currentTime = Time.time;
 			return true;
 		}
 		return false;
 	}
 
-	void MoveFordward(){
-		rgBody.AddForce(transform.up * -enemy.speed, ForceMode.Impulse);
+	void MoveFordward () {
+		rgBody.AddForce (transform.up * -speed, ForceMode.Impulse);
 	}
 
-	void SpawnShoot(Transform spawner_position){
-		ShotBehaviour obj = Instantiate(shoot_prefab,spawner_position.transform.position,spawner_position.transform.rotation);
-		obj.name = transform.name+" - tiro";
-		obj.master_obj = gameObject;
+	void SpawnShoot (Transform spawner_position) {
+		ShotBehaviour obj = Instantiate (shoot_prefab, spawner_position.transform.position, spawner_position.transform.rotation);
+		obj.name = transform.name + " - tiro";
+		obj.GetComponent<Shot> ().parentTag = gameObject.tag;
+		//obj.GetComponent<Shot> ().parentObj = gameObject;
 	}
-
-	void OnCollisionEnter(Collision other)
-	{
-		if(other.gameObject.tag == "Enemy"){
-			
+	private void OnTriggerEnter (Collider other) {
+		Debug.Log (other.tag);
+		if (other.tag == "Shot") {
+			Shot shot = other.gameObject.GetComponentInParent<Shot> ();
+			//Debug.Log (shot.parentObj);
+			if (shot.parentTag == "Player") {
+				Destroy (gameObject);
+				//	Instantiate (explosion_pfb);
+			}
 		}
 	}
 }

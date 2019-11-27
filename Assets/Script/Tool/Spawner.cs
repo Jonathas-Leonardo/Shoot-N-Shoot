@@ -11,32 +11,32 @@ public class Spawner : MonoBehaviour {
 	public float stepTime = 1;
 	public bool isStop;
 
-	private void FixedUpdate() {
+	private void FixedUpdate () {
 
-		if(NumberOfSpawn >= times ){
-			isStop=true;
+		if (NumberOfSpawn >= times && times > 0) {
+			isStop = true;
 		}
 
-		if(!isStop){
-			if(Time.time >= currentTime){
-				Spawn();
-				AddCurrentTime();
+		if (!isStop) {
+			if (Time.time >= currentTime) {
+				Spawn ();
+				AddCurrentTime ();
 			}
 		}
 	}
 
-	public void AddNumberOfSpawn(){
+	public void AddNumberOfSpawn () {
 		NumberOfSpawn++;
 	}
 
-	public void AddCurrentTime(){
+	public void AddCurrentTime () {
 		currentTime = Time.time + stepTime;
 	}
 
-	public void Spawn(){
-		GameObject obj = Instantiate(prefab_obj, transform.position,transform.rotation);
-		obj.name = gameObject.name +"_"+ NumberOfSpawn;
-		obj.transform.parent = gameObject.transform;
-		AddNumberOfSpawn();
+	public void Spawn () {
+		GameObject obj = Instantiate (prefab_obj, transform.position, transform.rotation);
+		obj.name = gameObject.name + "_" + NumberOfSpawn;
+		//obj.transform.parent = gameObject.transform;
+		AddNumberOfSpawn ();
 	}
 }

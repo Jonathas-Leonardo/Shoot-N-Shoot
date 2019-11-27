@@ -8,6 +8,7 @@ TagManager:
   - Shot
   - Asteroid
   - Enemy
+  - Screen
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Asteroid
   - Shot
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 
